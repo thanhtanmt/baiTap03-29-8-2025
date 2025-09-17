@@ -15,10 +15,8 @@ public class User implements Serializable {
     private String phone;
     private Date createdDate;
 
-    // Constructor rỗng
     public User() {}
 
-    // Constructor đầy đủ
     public User(String email, String userName, String fullName, String passWord,
                 String avatar, int roleid, String phone, Date createdDate) {
         this.email = email;

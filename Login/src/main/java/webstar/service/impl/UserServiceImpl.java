@@ -1,7 +1,10 @@
 package webstar.service.impl;
 
+import java.util.List;
+
 import webstar.dao.UserDao;
 import webstar.dao.impl.UserDaoImpl;
+import webstar.model.Category;
 import webstar.model.User;
 import webstar.service.UserService;
 
@@ -26,6 +29,36 @@ public class UserServiceImpl implements UserService {
     public void insert(User user) {
         userDao.insert(user);
     }
+    
+    @Override
+    public void resetPassword(String email, String newPassword) {
+        userDao.updatePassword(email, newPassword);
+    }
+    
+    @Override
+    public void createCategory(String category_id, String name, String description, String user_id) {
+    	userDao.createCategory(category_id, name, description, user_id);
+    }
+    
+    @Override
+    public List<Category> readCategory(String user_id) {
+    	return userDao.readCategory(user_id);
+    }
+    
+    @Override
+    public void  updateCategory(String category_id, String name, String description, String user_id) {
+    	userDao.updateCategory(category_id, name, description, user_id);
+    }
+    
+    @Override
+    public void deleteCategory(String catagory_id) {
+    	userDao.deleteCategory(catagory_id);
+    }
+    
+    @Override
+    public String getID(String username) {
+    	return userDao.getID(username);
+    }
 
     @Override
     public boolean register(String username, String password, String email, String fullname, String phone) {
@@ -35,7 +68,7 @@ public class UserServiceImpl implements UserService {
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
 
-        userDao.insert(new User(email, username, fullname, password, null, 5, phone, date));
+        userDao.insert(new User(email, username, fullname, password, null, 1, phone, date));
         return true;
     }
 

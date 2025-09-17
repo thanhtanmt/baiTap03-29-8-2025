@@ -23,7 +23,7 @@ public class RegisterController extends HttpServlet {
 
         HttpSession session = req.getSession(false);
         if (session != null && session.getAttribute("account") != null) {
-            resp.sendRedirect(req.getContextPath() + "/home");
+            resp.sendRedirect(req.getContextPath() + "/admin/home");
             return;
         }
 
@@ -34,7 +34,7 @@ public class RegisterController extends HttpServlet {
                 if (cookie.getName().equals("username")) {
                     session = req.getSession(true);
                     session.setAttribute("username", cookie.getValue());
-                    resp.sendRedirect(req.getContextPath() + "/home");
+                    resp.sendRedirect(req.getContextPath() + "/admin/home");
                     return;
                 }
             }
